@@ -9,4 +9,13 @@ const addRole = (roleTitle, roleSalary, roleDeptId) => {
     })
 }
 
-addRole ('Manager', 80000, 1);
+const getAllRoles = () => {
+    dbconnect.query ('SELECT * FROM role;', (err, rows) => {
+        if (err) {throw err}
+        console.table(rows)
+    })
+}
+
+addRole ();
+
+module.exports = {addRole, getAllRoles}

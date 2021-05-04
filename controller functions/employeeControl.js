@@ -1,5 +1,4 @@
 const dbconnect = require('../db/ConnectionCMS.js');
-
 const cTable = require('console.table');
 
 const addEmployee = (employeeFirst, employeeLast, employeeRoleId, employeeManagerId = null) => {
@@ -17,4 +16,6 @@ const getAllEmployees = () => {
     })
 }
 
-addEmployee ('Richard', 'Crippen', 1);
+addEmployee ();
+
+module.exports = {addEmployee, getAllEmployees}
