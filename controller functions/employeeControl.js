@@ -1,5 +1,6 @@
 const dbconnect = require('../db/ConnectionCMS.js');
 const cTable = require('console.table');
+const connection = require('../db/ConnectionCMS.js');
 
 const addEmployee = (employeeFirst, employeeLast, employeeRoleId, employeeManagerId = null) => {
     const querystring = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${employeeFirst}', '${employeeLast}', ${employeeRoleId}, ${employeeManagerId});`
@@ -16,6 +17,9 @@ const getAllEmployees = () => {
     })
 }
 
-addEmployee ();
+const updateEmployee = () => {
+    const querystring = 'SELECT * from employee'
+    dbconnect.query (querystring, err )
+}
 
 module.exports = {addEmployee, getAllEmployees}
