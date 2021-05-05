@@ -3,6 +3,8 @@ const mysql = require('mysql');
 const cTable = require('console.table');
 const connection = require('./db/connection.js');
 const {getAllEmployees, addEmployee } = require('./controller functions/employeeControl.js');
+const {getAllRoles, addRole } = require('./controller functions/roleControl.js');
+const {getAllDepts, addDepartment } = require('./controller functions/departmentControl.js');
 
 connection.connect (function(err) {
     if (err) throw err; 
@@ -23,6 +25,10 @@ firstQuestion = () => {
             {
                 name: 'View Roles',
                 value: 'VIEW_ROLES'
+            },
+            {
+                name: 'View Departments',
+                value:'VIEW_DEPARTMENTS'
             },
             {
                 name: 'Add employee',
@@ -52,7 +58,8 @@ firstQuestion = () => {
             addRole ();
         } else if (initialQuerstion === 'ADD_DEPARTMENT') {
             addDepartment(); 
-        }
+        } else if (initialQuestion === 'VIEW_DEPARTMENTS')
+            getAllDepts();
         }
     }
 
