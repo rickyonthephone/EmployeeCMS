@@ -1,18 +1,20 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql'); 
 const cTable = require('console.table');
-const connection = require('./db/connection.js');
+const connection = require('./db/ConnectionCMS.js');
 const {getAllEmployees, addEmployee } = require('./controller functions/employeeControl.js');
 const {getAllRoles, addRole } = require('./controller functions/roleControl.js');
 const {getAllDepts, addDepartment } = require('./controller functions/departmentControl.js');
 
-connection.connect (function(err) {
-    if (err) throw err; 
-    console.log ('You are now connected!');
-    firstQuestion();
-});
 
-firstQuestion = () => {
+function beginCMS () {
+    console.log ('You are using the employee management system.')
+    firstQuestion();
+}
+
+beginCMS(); 
+
+function firstQuestion () {
     inquirer.prompt ([{
         type: 'list',
         name: 'initialQuestion',
@@ -32,7 +34,7 @@ firstQuestion = () => {
             },
             {
                 name: 'Add employee',
-                value: "ADD_EMPLOYEE"
+                value: 'ADD_EMPLOYEE'
             },
             {
                 name: 'Update employee',
@@ -47,7 +49,7 @@ firstQuestion = () => {
                 value: 'ADD_DEPARTMENT'
             }
         ]
-    }]).then ({initialQuestion}) => {
+    }]).then (({initialQuestion}) => {
         if (initialQuestion === 'VIEW_EMPLOYEES') {
             getAllEmployees();
         } else if (initialQuestion === 'VIEW_ROLES') {
@@ -56,12 +58,14 @@ firstQuestion = () => {
             addEmployee();
         } else if (initialQuestion === 'ADD_ROLE') {
             addRole ();
-        } else if (initialQuerstion === 'ADD_DEPARTMENT') {
+        } else if (initialQuestion === 'ADD_DEPARTMENT') {
             addDepartment(); 
-        } else if (initialQuestion === 'VIEW_DEPARTMENTS')
+        } else if (initialQuestion === 'VIEW_DEPARTMENTS') {
             getAllDepts();
         }
-    }
+    })
+}
+
 
 
 
