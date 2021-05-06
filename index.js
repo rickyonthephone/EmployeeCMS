@@ -4,7 +4,9 @@ const cTable = require('console.table');
 const connection = require('./db/ConnectionCMS.js');
 const {getAllEmployees, addEmployee } = require('./controller functions/employeeControl.js');
 const {getAllRoles, addRole } = require('./controller functions/roleControl.js');
-const {getAllDepts, addDepartment } = require('./controller functions/departmentControl.js');
+const {getAllDepts, addDepartment} = require('./controller functions/departmentControl.js');
+const endSession = require('./controller functions/endSession.js');
+
 
 
 function beginCMS () {
@@ -66,7 +68,7 @@ function firstQuestion () {
     })
 }
 
-
+module.exports = firstQuestion 
 
 
 
