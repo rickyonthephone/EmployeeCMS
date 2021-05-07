@@ -1,6 +1,6 @@
 const dbconnect = require('../db/ConnectionCMS.js');
 const cTable = require('console.table');
-const concludeContinue = require('./endSession.js');
+
 
 const addRole = (roleTitle, roleSalary, roleDeptId) => {
     const querystring = `INSERT INTO role (title, salary, department_id) VALUES ('${roleTitle}', '${roleSalary}', '${roleDeptId}');`
@@ -14,7 +14,7 @@ const getAllRoles = () => {
     dbconnect.query ('SELECT * FROM role;', (err, rows) => {
         if (err) {throw err}
         console.table(rows)
-        concludeContinue();
+
     })
 }
 
