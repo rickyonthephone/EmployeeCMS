@@ -96,3 +96,5 @@ const endSession = () => {
     });
 };
 beginCMS();
+
+module.exports = endSession; 

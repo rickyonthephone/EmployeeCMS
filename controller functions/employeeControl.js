@@ -2,6 +2,7 @@ const dbconnect = require("../db/ConnectionCMS.js");
 const cTable = require("console.table");
 const connection = require("../db/ConnectionCMS.js");
 const inquirer = require("inquirer");
+const conclude = require('../index.js');
 
 
 function addEmployee () {
@@ -54,6 +55,7 @@ function addEmployee () {
                     function (err) {
                         if (err) throw err;
                         console.log ("Your new employee has been added!")
+                        conclude();
                     })
             })
           })
@@ -66,6 +68,7 @@ const getAllEmployees = async () => {
       throw err;
     }
     console.table(rows);
+    conclude();
   });
 };
 
@@ -74,4 +77,4 @@ const getAllEmployees = async () => {
 //   dbconnect.query(querystring, err);
 // };
 
-module.exports = {addEmployee, getAllEmployees }
+module.exports = {addEmployee, getAllEmployees}
