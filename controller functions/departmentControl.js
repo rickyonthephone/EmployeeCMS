@@ -1,6 +1,6 @@
 const dbconnect = require('../db/ConnectionCMS.js');
 const cTable = require('console.table');
-const endSession = require('../index.js');
+const endSession = require('./endSession.js');
 const inquirer = require('inquirer');
 
 
@@ -18,10 +18,10 @@ const addDepartment = () => {
                }
         ])
         .then (function (answer) {
-            dbconnect.query (`INSERT INTO department SET ?`, answer, 
+            dbconnect.query (`INSERT INTO department SET ? name`, answer, 
             function (err) {
                 if(err) throw err; 
-                console.log `${answer.department} was added!`
+                console.log (`${answer.department} was added!`);
                 endSession();
             })
         })}

@@ -4,7 +4,7 @@ const cTable = require("console.table");
 const connection = require("./db/ConnectionCMS.js");
 const {getAllEmployees, addEmployee} = require("./controller functions/employeeControl.js");
 const {getAllRoles, addRole} = require("./controller functions/roleControl.js");
-const {getAllDepts,addDepartment} = require("./controller functions/departmentControl.js");
+const {getAllDepts, addDepartment} = require("./controller functions/departmentControl.js");
 
 function beginCMS() {
   console.log("You are using the employee management system.");
@@ -51,9 +51,6 @@ const firstQuestion = () => {
     .then(async ({ initialQuestion }) => {
       if (initialQuestion === "VIEW_EMPLOYEES") {
        getAllEmployees();
-        
-
-        endSession();
       } else if (initialQuestion === "VIEW_ROLES") {
         getAllRoles();
       } else if (initialQuestion === "ADD_EMPLOYEE") {
@@ -67,34 +64,9 @@ const firstQuestion = () => {
       }
     });
 };
-const endSession = () => {
-  inquirer
-    .prompt([
-      {
-        type: "list",
-        message: "Would you like to end your session?",
-        name: "conclude",
-        choices: [
-          {
-            name: "Yes",
-            value: "true",
-          },
-          {
-            name: "No",
-            value: "False",
-          },
-        ],
-      },
-    ])
-    .then((conclude) => {
-      if (conclude.conclude === "False") {
-        beginCMS();
-      } else {
-        console.log("Thank you, goodbye!");
-        process.exit();
-      }
-    });
-};
+
 beginCMS();
 
-module.exports = endSession; 
+module.exports = {beginCMS, firstQuestion}; 
+
+

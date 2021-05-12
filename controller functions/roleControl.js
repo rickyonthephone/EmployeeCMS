@@ -1,6 +1,6 @@
 const dbconnect = require('../db/ConnectionCMS.js');
 const cTable = require('console.table');
-const endSession = require('../index.js'); 
+const endSession = require('./endSession.js'); 
 const inquirer = require('inquirer');
 
 
